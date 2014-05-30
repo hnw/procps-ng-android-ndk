@@ -57,6 +57,11 @@
 #include <utmp.h>
 #include <arpa/inet.h>
 
+#ifdef __BIONIC__
+# define UTMP_FILE _PATH_UTMP
+# include <netinet/in6.h>
+#endif
+
 static int ignoreuser = 0;	/* for '-u' */
 static int oldstyle = 0;	/* for '-o' */
 static proc_t **procs;		/* our snapshot of the process table */
@@ -186,7 +191,14 @@ static void print_from(const utmp_t *restrict const u, const int ip_addresses, c
 
 	if (ip_addresses) { /* -i switch used */
 		memcpy(&ut_addr_v6, &u->ut_addr_v6, sizeof(ut_addr_v6));
+#ifdef __BIONIC__
+		struct in6_addr *p_addr_v6 = (struct in6_addr *)&ut_addr_v6;
+# define ut_addr_v6 *p_addr_v6
+#endif
 		if (IN6_IS_ADDR_V4MAPPED(&ut_addr_v6)) {
+#ifdef __BIONIC__
+# undef ut_addr_v6
+#endif
 			/* map back */
 			ut_addr_v6[0] = ut_addr_v6[3];
 			ut_addr_v6[1] = 0;

@@ -1,6 +1,10 @@
 #include <errno.h>
-#include <error.h>
-#include <stdio_ext.h>
+#ifdef __BIONIC__
+# include <stdio.h>
+#else
+# include <error.h>
+# include <stdio_ext.h>
+#endif
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>

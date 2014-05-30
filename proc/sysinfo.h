@@ -1,7 +1,9 @@
 #ifndef PROC_SYSINFO_H
 #define PROC_SYSINFO_H
 #include <sys/types.h>
-#include <sys/dir.h>
+#ifndef __BIONIC__
+# include <sys/dir.h>
+#endif
 #include "procps.h"
 
 EXTERN_C_BEGIN

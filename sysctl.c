@@ -29,7 +29,11 @@
 #include <dirent.h>
 #include <errno.h>
 #include <getopt.h>
-#include <glob.h>
+#ifdef __BIONIC__
+# include "lib/glob.h"
+#else
+# include <glob.h>
+#endif
 #include <libgen.h>
 #include <limits.h>
 #include <regex.h>

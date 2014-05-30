@@ -25,7 +25,9 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
-#include <error.h>
+#ifndef __BIONIC__
+# include <error.h>
+#endif
 
 #include <sys/ioctl.h>
 #include <sys/stat.h>
@@ -47,7 +49,6 @@
 #ifndef __GLIBC_MINOR__
 #define __GLIBC_MINOR__ -1
 #endif
-
 
 static const char * saved_personality_text = "You found a bug!";
 
@@ -522,6 +523,10 @@ catastrophic_failure(const char *filename,
 		     unsigned int linenum,
 		     const char *message)
 {
+#ifdef __BIONIC__
+  printf("%s", message);
+#else
   error_at_line(0, 0, filename, linenum, "%s", message);
+#endif
   exit(EXIT_FAILURE);
 }

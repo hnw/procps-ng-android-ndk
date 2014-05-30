@@ -34,7 +34,11 @@
 #include <unistd.h>
 #include <signal.h>
 #include <fcntl.h>
-#include <sys/dir.h>
+#ifdef __BIONIC__
+# define direct dirent
+#else
+# include <sys/dir.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 

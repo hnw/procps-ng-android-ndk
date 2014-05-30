@@ -25,7 +25,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <error.h>
+#ifndef __BIONIC__
+# include <error.h>
+#endif
 
 #include <sys/sysmacros.h>
 #include <sys/types.h>
@@ -63,7 +65,11 @@ static void signal_handler(int signo){
     case SIGUSR2:
       exit(EXIT_FAILURE);
     default:
+#ifdef __BIONIC__
+      printf("%s", _("please report this bug"));
+#else
       error_at_line(0, 0, __FILE__, __LINE__, "%s", _("please report this bug"));
+#endif
       signal(signo, SIG_DFL);  /* allow core file creation */
       kill(getpid(), signo);
   }

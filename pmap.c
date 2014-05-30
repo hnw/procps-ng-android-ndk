@@ -25,7 +25,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ipc.h>
-#include <sys/shm.h>
+#ifndef __BIONIC__
+# include <sys/shm.h>
+#endif
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>

@@ -36,6 +36,15 @@
 #include <errno.h>
 #include <getopt.h>
 
+#ifdef __BIONIC__
+#include <sys/syscall.h>
+
+pid_t getsid(pid_t pid);
+pid_t getsid(pid_t pid) {
+  return syscall(__NR_getsid, pid);
+}
+#endif
+
 /* EXIT_SUCCESS is 0 */
 /* EXIT_FAILURE is 1 */
 #define EXIT_USAGE 2

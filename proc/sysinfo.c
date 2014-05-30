@@ -36,6 +36,11 @@
 #include <netinet/in.h>  /* htons */
 #endif
 
+#ifdef __BIONIC__
+# include <dirent.h>
+# define direct dirent
+#endif
+
 long smp_num_cpus;     /* number of CPUs */
 
 #define BAD_OPEN_MESSAGE					\
