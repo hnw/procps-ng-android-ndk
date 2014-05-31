@@ -71,3 +71,29 @@ Session.vim
 *.app
 
 
+.deps
+.libs
+*.lo
+Makefile
+/config.h
+/config.log
+/config.status
+/stamp-h1
+/libtool
+/autom4te.cache/
+
+/free
+/kill
+/pgrep
+/pidof
+/pkill
+/pmap
+/pwdx
+/sysctl
+/tload
+/uptime
+/vmstat
+/w
+/lib/test_fileutils
+/lib/test_strutils
+/ps/pscommand

@@ -149,6 +149,8 @@ static int map_desc_showpath;
 
 static unsigned shm_minor = ~0u;
 
+#ifndef __BIONIC__
+
 static void discover_shm_minor(void)
 {
 	void *addr;
@@ -208,6 +210,8 @@ out_destroy:
 
 	return;
 }
+
+#endif
 
 static char *mapping_name(proc_t * p, unsigned KLONG addr,
 				unsigned KLONG len, const char *mapbuf_b,
@@ -1156,7 +1160,9 @@ int main(int argc, char **argv)
 		pidlist[count++] = pid;
 	}
 
+#ifndef __BIONIC__
 	discover_shm_minor();
+#endif
 
 	memset(&p, '\0', sizeof(p));
 	/* old libproc interface is zero-terminated */

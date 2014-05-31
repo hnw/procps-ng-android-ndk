@@ -195,7 +195,8 @@ am__snice_SOURCES_DIST = skill.c $(top_srcdir)/lib/strutils.c \
 @BUILD_SKILL_TRUE@	nsutils.$(OBJEXT)
 snice_OBJECTS = $(am_snice_OBJECTS)
 snice_LDADD = $(LDADD)
-am_sysctl_OBJECTS = sysctl.$(OBJEXT) fileutils.$(OBJEXT)
+am_sysctl_OBJECTS = sysctl.$(OBJEXT) fileutils.$(OBJEXT) \
+	glob.$(OBJEXT)
 sysctl_OBJECTS = $(am_sysctl_OBJECTS)
 sysctl_LDADD = $(LDADD)
 am_tload_OBJECTS = tload.$(OBJEXT) strutils.$(OBJEXT) \
@@ -564,7 +565,7 @@ pgrep_SOURCES = pgrep.c $(top_srcdir)/lib/fileutils.c $(top_srcdir)/lib/nsutils.
 pkill_SOURCES = pgrep.c $(top_srcdir)/lib/fileutils.c $(top_srcdir)/lib/nsutils.c
 pmap_SOURCES = pmap.c $(top_srcdir)/lib/fileutils.c
 pwdx_SOURCES = pwdx.c $(top_srcdir)/lib/fileutils.c
-sysctl_SOURCES = sysctl.c $(top_srcdir)/lib/fileutils.c
+sysctl_SOURCES = sysctl.c $(top_srcdir)/lib/fileutils.c $(top_srcdir)/lib/glob.c
 tload_SOURCES = tload.c $(top_srcdir)/lib/strutils.c $(top_srcdir)/lib/fileutils.c
 uptime_SOURCES = uptime.c $(top_srcdir)/lib/fileutils.c
 vmstat_SOURCES = vmstat.c $(top_srcdir)/lib/strutils.c $(top_srcdir)/lib/fileutils.c
@@ -850,6 +851,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fileutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/free.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/glob.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nsutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pgrep.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pidof.Po@am__quote@
@@ -927,6 +929,20 @@ nsutils.obj: $(top_srcdir)/lib/nsutils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/lib/nsutils.c' object='nsutils.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o nsutils.obj `if test -f '$(top_srcdir)/lib/nsutils.c'; then $(CYGPATH_W) '$(top_srcdir)/lib/nsutils.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/lib/nsutils.c'; fi`
+
+glob.o: $(top_srcdir)/lib/glob.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT glob.o -MD -MP -MF $(DEPDIR)/glob.Tpo -c -o glob.o `test -f '$(top_srcdir)/lib/glob.c' || echo '$(srcdir)/'`$(top_srcdir)/lib/glob.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/glob.Tpo $(DEPDIR)/glob.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/lib/glob.c' object='glob.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o glob.o `test -f '$(top_srcdir)/lib/glob.c' || echo '$(srcdir)/'`$(top_srcdir)/lib/glob.c
+
+glob.obj: $(top_srcdir)/lib/glob.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT glob.obj -MD -MP -MF $(DEPDIR)/glob.Tpo -c -o glob.obj `if test -f '$(top_srcdir)/lib/glob.c'; then $(CYGPATH_W) '$(top_srcdir)/lib/glob.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/lib/glob.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/glob.Tpo $(DEPDIR)/glob.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/lib/glob.c' object='glob.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o glob.obj `if test -f '$(top_srcdir)/lib/glob.c'; then $(CYGPATH_W) '$(top_srcdir)/lib/glob.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/lib/glob.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
